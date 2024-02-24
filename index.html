@@ -434,27 +434,7 @@ function atualizarCarrinhoModal() {
       adicionaisHTML = '<p>Sem adicionais</p>';
     }
 
-    carrinhoModal.innerHTML += `
-      <div class="card mb-3">
-        <div class="row no-gutters">
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">${produto.nome}</h5>
-              ${adicionaisHTML}
-              <p class="card-text">Preço: R$ ${produto.preco.toFixed(2)}</p>
-              <button type="button" class="btn btn-danger" onclick="removerItemCarrinho(${index})">Remover</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-  });
-
-  // Exibe o total do pedido na modal
-  var totalPedidoElement = document.getElementById('totalPedido');
-  totalPedidoElement.textContent = `Total: R$ ${totalPedido.toFixed(2)}`;
-  
-  // Adicionando campos de informações do cliente na modal
+    // Adicionando campos de informações do cliente na modal
   var clienteInfoHTML = `
     <div class="card mb-3">
       <div class="card-body">
@@ -478,6 +458,28 @@ function atualizarCarrinhoModal() {
     </div>
   `;
   carrinhoModal.innerHTML += clienteInfoHTML;
+
+    carrinhoModal.innerHTML += `
+      <div class="card mb-3">
+        <div class="row no-gutters">
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">${produto.nome}</h5>
+              ${adicionaisHTML}
+              <p class="card-text">Preço: R$ ${produto.preco.toFixed(2)}</p>
+              <button type="button" class="btn btn-danger" onclick="removerItemCarrinho(${index})">Remover</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  // Exibe o total do pedido na modal
+  var totalPedidoElement = document.getElementById('totalPedido');
+  totalPedidoElement.textContent = `Total: R$ ${totalPedido.toFixed(2)}`;
+  
+  
 }
 
 
@@ -594,12 +596,12 @@ function finalizarPedido() {
     var mensagem = 'Nome: ' + nomeCliente + '\n';
     mensagem += 'Endereço: ' + enderecoCliente + '\n';
     mensagem += 'Pagamento: ' + formaPagamento + '\n\n';
-    mensagem += 'Pedido:\n\n';
+    mensagem += '🔔 Novo Pedido 🔔\n\n';
 
     carrinho.forEach(function(item, index) {
         mensagem += 'Produto: ' + item.nome + '\n';
-        mensagem += 'Adicionais: ' + (item.adicionais.length > 0 ? item.adicionais.join(', ') : 'Sem adicionais') + '\n';
-        mensagem += 'Preço: R$ ' + item.preco.toFixed(2) + '\n\n';
+        mensagem += 'Adicionais: \n' + (item.adicionais.length > 0 ? item.adicionais.join(', ') : 'Sem adicionais') + '\n';
+        mensagem += '_Valor: R$ _' + item.preco.toFixed(2) + '\n\n';
     });
 
     mensagem += 'Total do Pedido: R$ ' + calcularTotal() + '\n';
