@@ -992,5 +992,51 @@ body.modal-open {
     height: auto;
   }
   
+
+  .iphone-popup {
+    position: absolute;
+    border-radius: 5px;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 30px;
+    width: 50%;
+    min-width: 300px;
+    background: #FFF;
+    z-index: 999999999;
+    transition: 1s;
+}
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    width: 50px;
+    margin-right: 10px;
+}
+
+.options {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.accept {
+    background-color: #4caf50;
+    color: white;
+}
+
+.decline {
+    background-color: #f44336;
+    color: white;
+}
 /* 000 Webhost*/
 img[src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"] {display: none;}
