@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2021 (64 Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="100mm" height="100mm" version="1.1" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"
+viewBox="0 0 10000 10000"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <font id="FontID0" horiz-adv-x="599" font-variant="normal" fill-rule="nonzero" font-weight="400">
+	<font-face 
+		font-family="Tahoma">
+		<font-face-src>
+			<font-face-name name="Tahoma"/>
+		</font-face-src>
+	</font-face>
+   <missing-glyph><path d="M0 0z"/></missing-glyph>
+   <glyph unicode="+" horiz-adv-x="727" d="M651 279l-247 0 0 -247 -81.0002 0 0 247 -247 0 0 78 247 0 0 247 81.0002 0 0 -247 247 0 0 -78z"/>
+  </font>
+ </defs>
+ <g id="Camada_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <rect fill="none" x="-3.8" y="3.8" width="10000" height="10000"/>
+  <text x="103.91" y="9283.72"  fill="black" font-weight="normal" font-size="13458.85px" font-family="Tahoma">+</text>
+ </g>
+</svg>
