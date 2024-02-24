@@ -1006,9 +1006,26 @@ body.modal-open {
     z-index: 999999999;
     transition: 1s;
 }
+.iphone-popup .flex.options {
+    position: relative;
+    padding: 0;
+}
+
+.iphone-popup::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 20px;
+    height: 20px;
+    background: #FFF;
+}
+
 .flex {
     display: flex;
     align-items: center;
+    padding-bottom: 20px;
 }
 
 .icon {
