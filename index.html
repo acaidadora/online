@@ -436,70 +436,71 @@ function removerItemCarrinho(index) {
   atualizarContagemCarrinho(); // Atualiza a contagem do carrinho
 }
 
-// Função para modal do carrinho
+// Função para atualizar a modal do carrinho
 function atualizarCarrinhoModal() {
-  var carrinhoModal = document.getElementById('carrinhoModal');
-  carrinhoModal.innerHTML = '';
+    var carrinhoModal = document.getElementById('carrinhoModal');
+    carrinhoModal.innerHTML = '';
   
-  var totalPedido = 0; // Variável para calcular o total do pedido
-
-  carrinho.forEach(function(produto, index) {
-    totalPedido += produto.preco; // Adiciona o preço do item ao total do pedido
-
-    var adicionaisHTML = '';
-    if (produto.adicionais.length > 0) {
-      adicionaisHTML = '<p>Adicionais: ' + produto.adicionais.join(', ') + '</p>';
-    } else {
-      adicionaisHTML = '<p>Sem adicionais</p>';
-    }
+    var totalPedido = 0; // Variável para calcular o total do pedido
 
     // Adicionando campos de informações do cliente na modal
-  var clienteInfoHTML = `
-    <div class="card mb-3">
-      <div class="card-body">
-        <h5 class="card-title">Informações do Cliente</h5>
-        <div class="form-group">
-          <label for="nomeClienteModal">Nome:</label>
-          <input type="text" class="form-control" id="nomeClienteModal" placeholder="Digite seu nome">
-        </div>
-        <div class="form-group">
-          <label for="enderecoClienteModal">Endereço:</label>
-          <input type="text" class="form-control" id="enderecoClienteModal" placeholder="Digite seu endereço">
-        </div>
-        <div class="form-group">
-          <label for="formaPagamentoModal">Forma de Pagamento:</label>
-          <select class="form-control" id="formaPagamentoModal">
-            <option value="Dinheiro">Dinheiro</option>
-            <option value="PIX">PIX</option>
-          </select>
-        </div>
-      </div>
-    </div>
-  `;
-  carrinhoModal.innerHTML += clienteInfoHTML;
-
-    carrinhoModal.innerHTML += `
-      <div class="card mb-3">
-        <div class="row no-gutters">
-          <div class="col-md-8">
+    var clienteInfoHTML = `
+        <div class="card mb-3">
             <div class="card-body">
-              <h5 class="card-title">${produto.nome}</h5>
-              ${adicionaisHTML}
-              <p class="card-text">Preço: R$ ${produto.preco.toFixed(2)}</p>
-              <button type="button" class="btn btn-danger" onclick="removerItemCarrinho(${index})">Remover</button>
+                <h5 class="card-title">Informações do Cliente</h5>
+                <div class="form-group">
+                    <label for="nomeClienteModal">Nome:</label>
+                    <input type="text" class="form-control" id="nomeClienteModal" placeholder="Digite seu nome">
+                </div>
+                <div class="form-group">
+                    <label for="enderecoClienteModal">Endereço:</label>
+                    <input type="text" class="form-control" id="enderecoClienteModal" placeholder="Digite seu endereço">
+                </div>
+                <div class="form-group">
+                    <label for="formaPagamentoModal">Forma de Pagamento:</label>
+                    <select class="form-control" id="formaPagamentoModal">
+                        <option value="Dinheiro">Dinheiro</option>
+                        <option value="PIX">PIX</option>
+                    </select>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     `;
-  });
+    carrinhoModal.innerHTML += clienteInfoHTML;
 
-  // Exibe o total do pedido na modal
-  var totalPedidoElement = document.getElementById('totalPedido');
-  totalPedidoElement.textContent = `Total: R$ ${totalPedido.toFixed(2)}`;
-  
-  
+    // Adicionando os itens do carrinho na modal
+    carrinho.forEach(function(produto, index) {
+        totalPedido += produto.preco; // Adiciona o preço do item ao total do pedido
+
+        var adicionaisHTML = '';
+        if (produto.adicionais.length > 0) {
+            adicionaisHTML = '<p>Adicionais: ' + produto.adicionais.join(', ') + '</p>';
+        } else {
+            adicionaisHTML = '<p>Sem adicionais</p>';
+        }
+
+        var itemHTML = `
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">${produto.nome}</h5>
+                            ${adicionaisHTML}
+                            <p class="card-text">Preço: R$ ${produto.preco.toFixed(2)}</p>
+                            <button type="button" class="btn btn-danger" onclick="removerItemCarrinho(${index})">Remover</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        carrinhoModal.innerHTML += itemHTML;
+    });
+
+    // Exibe o total do pedido na modal
+    var totalPedidoElement = document.getElementById('totalPedido');
+    totalPedidoElement.textContent = `Total: R$ ${totalPedido.toFixed(2)}`;
 }
+
 
 
 
@@ -619,8 +620,8 @@ function finalizarPedido() {
 
     carrinho.forEach(function(item, index) {
         mensagem += 'Produto: ' + item.nome + '\n';
-        mensagem += 'Adicionais: \n' + (item.adicionais.length > 0 ? item.adicionais.join(', ') : 'Sem adicionais') + '\n';
-        mensagem += '_Valor: R$ _' + item.preco.toFixed(2) + '\n\n';
+        mensagem += '- ' + (item.adicionais.length > 0 ? item.adicionais.join('\n- ') : 'Sem adicionais') + '\n';
+        mensagem += '_Valor: R$ ' + item.preco.toFixed(2) + '_\n\n';
     });
 
     mensagem += 'Total do Pedido: R$ ' + calcularTotal() + '\n';
@@ -630,7 +631,6 @@ function finalizarPedido() {
     // Abrir a página do WhatsApp
     window.open(urlWhatsApp, '_blank');
 }
-
 
 
 function calcularTotal() {
