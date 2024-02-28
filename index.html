@@ -530,7 +530,7 @@ function atualizarCarrinhoModal() {
                     <select class="form-control" id="formaPagamentoModal">
                         <option value="Dinheiro">Dinheiro</option>
                         <option value="PIX">PIX</option>
-			                  <option value="Credito">Credito(Com Juros)</option>
+			                  <option value="Credito(Com Juros)">Credito(Com Juros)</option>
                     </select>
                 </div>
             </div>
@@ -721,7 +721,7 @@ function calcularTotal() {
 
     // Verifica se a forma de pagamento é Cartão de Crédito e aplica o acréscimo de 3% se for
     var formaPagamento = document.getElementById('formaPagamentoModal').value;
-    if (formaPagamento === 'Credito') {
+    if (formaPagamento === 'Credito(Com Juros)') {
         totalPedido *= 1.03; // Acréscimo de 3% para pagamento com cartão de crédito
     }
 
