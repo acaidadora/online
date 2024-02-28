@@ -530,7 +530,7 @@ function atualizarCarrinhoModal() {
                     <select class="form-control" id="formaPagamentoModal">
                         <option value="Dinheiro">Dinheiro</option>
                         <option value="PIX">PIX</option>
-			<option value="Credito(Com Juros)">Credito(Com Juros)</option>
+			                  <option value="Credito">Credito(Com Juros)</option>
                     </select>
                 </div>
             </div>
@@ -566,13 +566,16 @@ function atualizarCarrinhoModal() {
         carrinhoModal.innerHTML += itemHTML;
     });
 
+    // Adiciona um evento de escuta ao elemento de seleção de forma de pagamento
+document.getElementById('formaPagamentoModal').addEventListener('change', function() {
+    // Chama a função calcularTotal() para recalcular o total com base na forma de pagamento selecionada
+    calcularTotal();
+});
+
     // Exibe o total do pedido na modal
     var totalPedidoElement = document.getElementById('totalPedido');
     totalPedidoElement.textContent = `Total: R$ ${totalPedido.toFixed(2)}`;
 }
-
-
-
 
 
     // Função para atualizar a contagem do carrinho
@@ -682,7 +685,10 @@ function finalizarPedido() {
     var nomeCliente = document.getElementById('nomeClienteModal').value;
     var enderecoCliente = document.getElementById('enderecoClienteModal').value;
     var formaPagamento = document.getElementById('formaPagamentoModal').value;
-    
+
+    // Calcular o total do pedido com os juros
+    var totalPedidoComJuros = calcularTotal();
+
     var mensagem = 'Nome: ' + nomeCliente + '\n';
     mensagem += 'Endereço: ' + enderecoCliente + '\n';
     mensagem += 'Pagamento: ' + formaPagamento + '\n\n';
@@ -694,7 +700,7 @@ function finalizarPedido() {
         mensagem += '_Valor: R$ ' + item.preco.toFixed(2) + '_\n\n';
     });
 
-    mensagem += 'Total do Pedido: R$ ' + calcularTotal() + '\n';
+    mensagem += 'Total do Pedido: R$ ' + totalPedidoComJuros.toFixed(2) + '\n';
 
     // URL do WhatsApp com a mensagem e o número de telefone
     var urlWhatsApp = 'https://api.whatsapp.com/send?phone=' + encodeURIComponent(contato) + '&text=' + encodeURIComponent(mensagem);
@@ -703,13 +709,29 @@ function finalizarPedido() {
 }
 
 
+
+// Função para calcular o total do pedido e exibir na modal
 function calcularTotal() {
-    var total = 0;
-    carrinho.forEach(function(item) {
-        total += item.preco;
+    var totalPedido = 0; // Variável para calcular o total do pedido
+
+    // Adicionando os itens do carrinho na modal
+    carrinho.forEach(function(produto) {
+        totalPedido += produto.preco; // Adiciona o preço do item ao total do pedido
     });
-    return total.toFixed(2); // Arredonda o total para duas casas decimais
+
+    // Verifica se a forma de pagamento é Cartão de Crédito e aplica o acréscimo de 3% se for
+    var formaPagamento = document.getElementById('formaPagamentoModal').value;
+    if (formaPagamento === 'Credito') {
+        totalPedido *= 1.03; // Acréscimo de 3% para pagamento com cartão de crédito
+    }
+
+    // Exibe o total do pedido na modal
+    var totalPedidoElement = document.getElementById('totalPedido');
+    totalPedidoElement.textContent = `Total: R$ ${totalPedido.toFixed(2)}`;
+
+    return totalPedido; // Retorna o total do pedido
 }
+
 
 
 function okEntendi() {
