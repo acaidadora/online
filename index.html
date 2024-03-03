@@ -30,6 +30,18 @@
 </head>
 <body>
 
+  <!-- Modal para exibir o status da loja -->
+ 
+
+
+<div id="modalFuncionamento" class="loja-modal">
+  <div class="loja-modal-content">
+      <span class="loja-close" onclick="ocultarModal()">&times;</span>
+      <p>A loja está fechada no momento. Voltaremos a abrir em breve.</p>
+  </div>
+</div>
+
+
 
   <!--
 	<div class="iphone-popup">
@@ -51,25 +63,9 @@
 	-->
    
   <!-- Navbar -->
-  <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Restaurante <span id="carrinhoCount" class="badge badge-pill badge-primary">0</span></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="index.html">Início</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#sobre">Sobre</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#cardapio">Cardápio</a>
-        </li>
-      </ul>
-    </div>
-  </nav> -->
+  <div class="custom-navbar">
+    <p>🕒 Horário de Funcionamento: Segunda a Domingo 11:00h as 23:00h</p>
+  </div>
 
   <!-- Conteúdo -->
   <div class="container mt-5">
@@ -78,7 +74,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg pl-0 pr-0 col-one">
                 <a class="navbar-brand wow zoomIn" href="#">
-                    <img src="./img/logo.png" width="150" class="img-logo" href="#banner" />
+                    <img src="./img/logo.png" width="150" class="img-logo" href="index.html" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
                     <span class="navbar-toggler-icon">
@@ -89,7 +85,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav ml-auto mr-auto wow zoomIn">
                         
-                        <li class="nav-item"><a href="#banner" class="nav-link"><b>Inicio</b></a></li>
+                        <li class="nav-item"><a href="index.html" class="nav-link"><b>Inicio</b></a></li>
                         <li class="nav-item"><a href="#cardapio" class="nav-link"><b>Cardápio</b></a></li>
                         <li class="nav-item"><a href="#sobre" class="nav-link"><b>Sobre Nós</b></a></li>
                         <li class="nav-item"><a href="#servicos" class="nav-link"><b>Serviços</b></a></li>
@@ -740,6 +736,28 @@ function okEntendi() {
     // Exemplo de redirecionamento para a tela inicial do celular:
     // window.location.href = '/';
 }
+
+
+// Função para verificar se a loja está aberta ou fechada
+window.onload = function() {
+            var statusLojaSalvo = localStorage.getItem('statusLoja');
+            if (statusLojaSalvo === 'fechada') {
+                mostrarModal();
+            }
+        };
+
+        function mostrarModal() {
+            var modal = document.getElementById('modalFuncionamento');
+            modal.style.display = 'block';
+        }
+
+        function ocultarModal() {
+            var modal = document.getElementById('modalFuncionamento');
+            modal.style.display = 'none';
+        }
+
+
+
   </script>
 
   <!-- Scripts do Bootstrap e do jQuery -->
