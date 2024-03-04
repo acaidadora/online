@@ -112,7 +112,7 @@
     </div>
 
     <p>Horário de Atendimento: </p>
-     <p>Segunda a Domingo, das 11h às 23h </p>
+     <p>Segunda a Domingo, das 11h às 22h </p>
 
     <script>
         function salvarConfiguracoes(statusLoja) {
@@ -129,7 +129,7 @@
         // Verificar se a loja deve ser fechada automaticamente
         window.onload = function() {
             var horaAtual = new Date().getHours();
-            if (horaAtual < 11 || horaAtual >= 23) { // Fora do horário de funcionamento
+            if (horaAtual < 11 || horaAtual >= 22) { // Fora do horário de funcionamento
                 document.getElementById('statusLojaCheckbox').checked = false;
                 salvarConfiguracoes('fechada');
             } else {
